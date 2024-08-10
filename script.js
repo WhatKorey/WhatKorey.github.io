@@ -1,15 +1,15 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section");
     const body = document.body;
 
     const colors = {
-        about: "#1e3a5f", // Dark blue for About section
-        resume: "#4a5568", // Dark gray for Resume section
-        "personal-statement": "#2c7a7b", // Teal for Personal Statement section
-        contact: "#2d3748" // Darker gray for Contact section
+        about: "#1e3a5f",
+        resume: "#4a5568",
+        "personal-statement": "#2c7a7b",
+        contact: "#2d3748"
     };
 
-    function changeBackground() {
+    const changeBackground = () => {
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 body.style.backgroundColor = colors[sectionId];
             }
         });
-    }
+    };
 
-    function revealSection() {
+    const revealSection = () => {
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
@@ -30,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 section.classList.add("show");
             }
         });
-    }
+    };
 
     window.addEventListener("scroll", () => {
         revealSection();
         changeBackground();
     });
 
-    revealSection(); // Initial check on page load
-    changeBackground(); // Initial background setup
+    revealSection();
+    changeBackground();
 });
