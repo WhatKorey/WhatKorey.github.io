@@ -5,6 +5,7 @@ body {
     color: #333;
     background-color: #f9f9f9;
     line-height: 1.6;
+    transition: background-color 0.5s ease; /* Smooth transition for background color */
 }
 
 .container {
@@ -36,27 +37,52 @@ nav ul {
 
 nav ul li {
     display: inline-block;
-    margin: 0 20px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    padding: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
     transition: color 0.3s ease;
 }
 
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: #f4a261;
+    z-index: -1;
+    transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease;
+    border-radius: 50%; /* Keep it circular */
+    transform: translate(-50%, -50%);
+}
+
+nav ul li a:hover::before {
+    width: 120%;
+    height: 120%;
+    top: 50%;
+    left: 50%;
+}
+
 nav ul li a:hover {
-    color: #f4a261;
+    color: #222; /* Text color changes on hover */
 }
 
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('') no-repeat center center/cover;
     color: #fff;
     text-align: center;
     padding: 100px 20px;
-    border-bottom: 5px solid #f4a261;
+    border-bottom: 5px solid #ffffff;
 }
 
 .hero h2 {
@@ -67,11 +93,19 @@ nav ul li a:hover {
 section {
     padding: 50px 0;
     border-bottom: 2px solid #e0e0e0;
+    opacity: 0; /* Start hidden for fade-in effect */
+    transform: translateY(20px); /* Start slightly down */
+    transition: all 0.6s ease-out; /* Smooth transition for fade-in */
+}
+
+section.show {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to original position */
 }
 
 section h2 {
     font-size: 2rem;
-    color: #f4a261;
+    color: #ffffff;
     margin-bottom: 20px;
     text-align: center;
     position: relative;
@@ -79,11 +113,11 @@ section h2 {
 
 section h2::after {
     content: '';
-    width: 60px;
-    height: 4px;
-    background: #f4a261;
+    width: 40px; /* Adjusted the width of the line */
+    height: 2px; /* Adjusted the height of the line */
+    background: #f4a261; /* Line color */
     position: absolute;
-    bottom: -10px;
+    bottom: -5px; /* Adjusted the vertical position */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -101,15 +135,37 @@ section h2::after {
     margin-top: 10px;
 }
 
+.contact p a {
+    display: inline-block;
+    padding: 12px 25px; /* Increase padding for better balance */
+    color: #fff;
+    background-color: #444;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 30px; /* Fully rounded links for a sleek look */
+    font-size: 1rem; /* Slightly larger text for better readability */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact p a:hover {
+    background-color: #f4a261;
+    color: #222;
+    transform: scale(1.08); /* Slight zoom effect */
+}
+
 footer {
     background-color: #222;
     color: #fff;
     text-align: center;
     padding: 20px 0;
     margin-top: 20px;
-    border-top: 5px solid #f4a261;
+    border-top: 5px solid #ffffff;
 }
 
 footer p {
     margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
